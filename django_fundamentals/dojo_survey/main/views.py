@@ -13,6 +13,7 @@ def submit(request):
             'comment': request.POST['comment'],
         }
         return render(request, 'result.html', info)
+        # how to make the above a redirect instead of render (since it is a POST)
 
 def back(request):
     return render(request, 'index.html')
