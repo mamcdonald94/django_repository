@@ -9,7 +9,7 @@ def submit(request):
     request.session['dojo'] = request.POST['dojo']
     request.session['lang'] = request.POST['lang']
     request.session['comment'] = request.POST['comment']
-    return redirect('/result')
+    return redirect('/result.html')
 
 def result(request):
     return render(request, 'result.html')
