@@ -10,10 +10,10 @@
 <body>
     <div class="container">
         <h3 style="text-decoration: underline;">Submitted Info</h3>
-        <p>Name: {{name}}</p>
-        <p>Dojo Location: {{dojo}}</p>
-        <p>Favorite Language: {{lang}}</p>
-        <p>Comment: {{comment}}</p>
+        <p>Name: {{request.session.name}}</p>
+        <p>Dojo Location: {{request.session.dojo}}</p>
+        <p>Favorite Language: {{request.session.lang}}</p>
+        <p>Comment: {{request.session.comment}}</p>
     </div>
     <form action="index.html" method=POST>
         {% csrf_token %}
@@ -21,3 +21,4 @@
     </form>
 </body>
 </html>
+
