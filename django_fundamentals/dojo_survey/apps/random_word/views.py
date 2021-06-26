@@ -4,7 +4,7 @@ from django.utils.crypto import get_random_string
 
 
 def generate(request):
-    counter = request.session.get('counter')
+    counter = request.session.get('counter') # how does session.get work? what does it do?
     if counter is None:
         request.session['counter'] = 1
     else:
