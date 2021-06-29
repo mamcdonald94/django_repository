@@ -15,7 +15,7 @@
         <p>Favorite Language: {{request.session.lang}}</p>
         <p>Comment: {{request.session.comment}}</p>
     </div>
-    <form action="index.html" method=POST>
+    <form action="{% url 'test_back' %}" method=POST>
         {% csrf_token %}
         <button style="margin-left: 435px" type="submit" class="btn btn-primary">Go Back</button>
     </form>

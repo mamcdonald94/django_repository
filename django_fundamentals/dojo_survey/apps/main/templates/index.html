@@ -11,7 +11,7 @@
 
 <body>
     <div id="container" style="padding: 20px;">
-        <form action="main/submit_form" method="POST">
+        <form action="{% url 'test_submit' %}" method="POST">
             {% csrf_token %}
             <div class="row mb-2">
                 <label for="name" class="col-sm-2 col-form-label">Your Name:</label>
