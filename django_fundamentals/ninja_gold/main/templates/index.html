@@ -15,7 +15,7 @@
                 Your Gold:
             </div>
             <div class="col-4">
-                gold_total_here
+                {{request.session.gold_total}}
             </div>
         </div>
         <div class="row mb-5">
@@ -48,10 +48,17 @@
                 <button class="btn btn-secondary">Find Gold!</button>
             </form>
         </div>
-        <div>
-            <p>Activities:</p>
-
+        <p>Activities:</p>
+        <div class="row" style="height: 150px;">
+            <div class="overflow-auto col h-100">
+                {% for line in request.session.history %}
+                <p>{{line}}</p>
+                {% endfor %}
+            </div>
         </div>
+        <form action="reset">
+            <button class="btn btn-danger mt-4">Reset?</button>
+        </form>
     </div>
 </body>
 </html>
