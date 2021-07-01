@@ -19,28 +19,28 @@
             </div>
         </div>
         <div class="row mb-5">
-            <form class="path col-3" action="/process-money" method="post">
+            <form class="path col-3" action="/process-money" method="POST">
                 {% csrf_token %}
                 <h5>Farm</h5>
                 <input type="hidden" name="farm" value="farm">
                 <p>(earns 10-20 gold)</p>
                 <button class="btn btn-secondary">Find Gold!</button>
             </form>
-            <form class="path col-3" action="/process-money" method="post">
+            <form class="path col-3" action="/process-money" method="POST">
                 {% csrf_token %}
                 <h5>Cave</h5>
                 <input type="hidden" name="cave" value="cave">
                 <p>(earns 5-10 gold)</p>
                 <button class="btn btn-secondary">Find Gold!</button>
             </form>
-            <form class="path col-3" action="/process-money" method="post">
+            <form class="path col-3" action="/process-money" method="POST">
                 {% csrf_token %}
                 <h5>House</h5>
                 <input type="hidden" name="house" value="house">
                 <p>(earns 2-5 gold)</p>
                 <button class="btn btn-secondary">Find Gold!</button>
             </form>
-            <form class="path col-3" action="/process-money" method="post">
+            <form class="path col-3" action="/process-money" method="POST">
                 {% csrf_token %}
                 <h5>Casino</h5>
                 <input type="hidden" name="casino" value="casino">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <form action="reset">
-            <button class="btn btn-danger mt-4">Reset?</button>
+            <button class="btn btn-danger mt-4">Reset</button>
         </form>
     </div>
 </body>
