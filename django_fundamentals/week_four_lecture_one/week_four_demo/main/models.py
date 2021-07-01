@@ -1,12 +1,19 @@
 from django.db import models
 
-
-class Truck(models.Model):
-    name = models.CharField(max_length=50)
-    slogan = models.TextField()
-    food_type = models.CharField(max_length=100)
-    star_rating = models.IntegerField()
-    expensive = models.BooleanField()
-    speciality = models.CharField(max_length=75)
+class User(models.Model):
+    name = models.CharField(max_length=45)
+    weight = models.IntegerField()
+    age = models.IntegerField()
+    always_hungry = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_ad = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    # tacos = [contains every taco associated with a user]
+
+class Taco(models.Model):
+    name = models.CharField(max_length=75)
+    toppings = models.TextField()
+    meat = models.BooleanField()
+    spicy = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, related_name= 'tacos', on_delete=models.CASCADE)

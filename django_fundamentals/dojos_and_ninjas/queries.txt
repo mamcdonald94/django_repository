@@ -1,0 +1,51 @@
+run shell and import models:
+-python manage.py shell
+
+Create 3 new dojos:
+-Dojo.objects.create(insert fields here)
+-Dojo.objects.create(insert fields here)
+-Dojo.objects.create(insert fields here)
+
+Delete the 3 dojos you just created:
+-dojo_1 = Dojo.objects.get(id=1)
+    - dojo_1.delete()
+-dojo_2 = Dojo.objects.get(id=2)
+    - dojo_2.delete()
+-dojo_3 = Dojo.objects.get(id=3)
+    - dojo_3.delete()
+
+Create 3 more dojos:
+-Dojo.objects.create(insert fields here)
+-Dojo.objects.create(insert fields here)
+-Dojo.objects.create(insert fields here)
+
+Create 3 ninjas that belong to the first dojo:
+-ninja4 = Ninja.objects.create(first_name='Beth', last_name='McDonald', dojo=Dojo.objects.get(id=5))
+-ninja5 = Ninja.objects.create(first_name='Bekah', last_name='McDonald', dojo=Dojo.objects.get(id=5))
+-ninja6 = Ninja.objects.create(first_name='Matt', last_name='McDonald', dojo=Dojo.objects.get(id=5))
+
+Create 3 ninjas that belong to the second dojo:
+-ninja1 = Ninja.objects.create(first_name='Mark', last_name='McDonald', dojo=Dojo.objects.get(id=6))
+-ninja2 = Ninja.objects.create(first_name='Erin', last_name='McDonald', dojo=Dojo.objects.get(id=6))
+-ninja3 = Ninja.objects.create(first_name='Lexi', last_name='McDonald', dojo=Dojo.objects.get(id=6))
+
+Create 3 ninjas that belong to the third dojo:
+-ninja7 = Ninja.objects.create(first_name='Bob', last_name='McDonald', dojo=Dojo.objects.get(id=7))
+-ninja8 = Ninja.objects.create(first_name='John', last_name='McDonald', dojo=Dojo.objects.get(id=7))
+-ninja9 = Ninja.objects.create(first_name='Steve', last_name='McDonald', dojo=Dojo.objects.get(id=7)
+
+Retrieve all the ninjas from the first dojo:
+-Ninja.objects.filter(dojo=Dojo.objects.get(id=5))
+
+Retrieve all the ninjas from the last dojo:
+-Ninja.objects.filter(dojo=Dojo.objects.get(id=7))
+
+Retrieve the last ninja's dojo:
+-Ninja.objects.last()
+
+Add a new text field called 'desc' to Dojo class:
+-python manage.py makemigrations
+-python manage.py migrate
+
+Create a new dojo:
+-Dojo.objects.create(insert fields here)
