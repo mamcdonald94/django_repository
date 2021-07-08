@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Dojos & Ninjas</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="col-4">Add a Dojo</h2>
+                <form action="/add_dojo" method="POST" class="inline">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="name" class="form-label col-2">Name</label>
+                                <input type="text" class="col-3" name="name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="city" class="form-label col-2">City</label>
+                                <input type="text" class="col-3" name="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="state" class="form-label col-2">State</label>
+                                <input type="text" class="col-3" name="state">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Add Dojo</button>
+                </form>
+            </div>
+            <div class="col-6">
+                <h2 class="col-4">Add a Ninja</h2>
+                <form action="/add_ninja" method="POST" class="inline">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="fname" class="form-label col-2">First Name</label>
+                                <input type="text" class="col-3" name="fname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="lname" class="form-label col-2">Last Name</label>
+                                <input type="text" class="col-3" name="lname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="dojo" class="form-label col-2">Dojo</label>
+                                <select name="dojo" id="dojo" class="col-3">
+                                    {% for one_dojo in dojos %}
+                                    <option value="{{one_dojo.id}}">{{one_dojo.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Add Ninja</button>
+                </form>
+            </div>
+        </div>
+        <h2 class="text-center">All the Dojos</h2>
+        {% for one_dojo in dojos %}
+        <ul>
+            <li>{{one_dojo.name}}</li>
+            {% for one_ninja in one_dojo.dojos.all %}
+            <ul>
+                <li>
+                    {{one_ninja.first_name}} {{one_ninja.last_name}}
+                </li>
+            </ul>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>
