@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Many to Many</title>
+</head>
+<body>
+    <h1>{{one_author.first_name}} {{one_author.last_name}}</h1>
+    <h3>ID:</h3>
+    <p>{{one_author.id}}</p>
+    <h3>Notes:</h3>
+    <p>{{one_author.notes}}</p>
+    <h3>Books:</h3>
+    {% for book in one_author.books.all %}
+    <p>{{book.title}}</p>
+    {% endfor %}
+    <h3>Add a book</h3>
+    <form action="/authors/add_book" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="author" value={{one_author.id}}>
+        <select name="book" id="book">
+            {% for book in books %}
+            {% if book not in one_author.books.all %}
+            <option value={{book.id}}>{{book.title}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <button>Add</button>
+    </form>
+</body>
+</html>
