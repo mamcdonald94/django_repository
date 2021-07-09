@@ -24,8 +24,11 @@
 		<ol>
 			{% for player in players %}
 				<li>{{player.first_name}} {{player.last_name}}</li>
+				<ul>
+					<li> Teams played for: {{player.num_teams}}</li>
+				</ul>
 			{% empty %}
-				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
 			{% endfor %}
 		</ol>
 	</body>
