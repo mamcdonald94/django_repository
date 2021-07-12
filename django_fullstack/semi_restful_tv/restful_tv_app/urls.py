@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
+    path('', shows),
     path('shows/', shows),
     path('shows/new', new),
     path('shows/create', create_show),
