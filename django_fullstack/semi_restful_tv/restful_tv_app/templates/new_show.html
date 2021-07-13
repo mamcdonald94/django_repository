@@ -9,6 +9,13 @@
 </head>
 <body>
     <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <p><a href="/shows" class="float-end">Go back</a></p>
         <h2>Add a New Show</h2>
         <form action="/shows/create" method="POST" class="col-10">
