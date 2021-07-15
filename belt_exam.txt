@@ -1,0 +1,7 @@
+Check out office hour videos from 7/12 and 7/14
+
+workflow:
+
+-what relationships? break down models & wireframe
+-easiest first, then hardest
+-make sure before you submit exam, click through it. try to break it. make sure everything works.
