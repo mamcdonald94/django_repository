@@ -1,7 +1,10 @@
 Check out office hour videos from 7/12 and 7/14
+Go back to login/reg lecture videos, esp. lecture on 7/12
+DOJOREADS WALK THRU: https://login.codingdojo.com/m/108/6032/56377
 
 workflow:
 
 -what relationships? break down models & wireframe
 -easiest first, then hardest
 -make sure before you submit exam, click through it. try to break it. make sure everything works.
+-use if request.method == 'POST'/'GET' to prevent people just using the url to directly access the parts of the site
