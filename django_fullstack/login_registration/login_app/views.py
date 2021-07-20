@@ -22,33 +22,39 @@ def register(request):
                 email = request.POST['email'],
                 password = hash_pw
             )
-            request.session['logged_user'] = user1.id
-        return redirect('/login')
+            request.session['log_user_id'] = user1.id
+            return redirect(f'/welcome/{user1.id}')
 
 def login(request):
     if request.method == "POST":
+        print("POST")
+    # else:
+    #     print('GET')
         user = User.objects.filter(email = request.POST['email'])
+        print(user)
 
         if user:
             log_user = user[0]
-
+            print(log_user.id)
             if bcrypt.checkpw(request.POST['password'].encode(), log_user.password.encode()):
-                request.session['logged_user'] = log_user.id
+                print('password match')
+                request.session['log_user_id'] = log_user.id
                 return redirect(f'/welcome/{log_user.id}')
-        messages.error(request, "Email or password are incorrect.")
+            else:
+                messages.error(request, "invalid email or password")
+        else:
+            messages.error(request, "Email does not exist.")
 
     return redirect('/')
 
 def welcome(request, id):
-    # if request.method == 'POST':
+    if "log_user_id" not in request.session:
+            return redirect('/')
+    else:
         context = {
             'user1': User.objects.get(id=id)
         }
-        print('hello')
         return render(request, 'welcome.html', context)
-    # else:
-    #     print(request.POST)
-        return redirect('/')
 
 def logout(request):
     request.session.flush()
