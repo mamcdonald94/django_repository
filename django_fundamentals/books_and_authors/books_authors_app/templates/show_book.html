@@ -20,6 +20,7 @@
     <form action="/books/add_author" method="POST">
         {% csrf_token %}
         <input type="hidden" name="book" value={{one_book.id}}>
+        <!-- checks to see if author already has been added to book, if it has not, it will populate said author in the dropdown menu -->
         <select name="author" id="author">
             {% for author in authors %}
             {% if author not in one_book.authors.all %}
