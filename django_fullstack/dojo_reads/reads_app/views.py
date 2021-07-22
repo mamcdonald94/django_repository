@@ -2,7 +2,6 @@ import bcrypt
 from django.shortcuts import render, redirect
 from .models import User, Author, Book, Review
 from django.contrib import messages
-from django.db.models import Count
 
 # Create your views here.
 def index(request):

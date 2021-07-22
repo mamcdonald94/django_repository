@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>{{this_book.title}}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Welcome, {{logged_user.first_name}}!</h1>
+            <a href="/user/dashboard" class="d-flex justify-content-start align-items-center col-6" style="color: blue;">Home</a>
+            <a href="/user/logout" class="d-flex justify-content-end align-items-center col-6" style="color: red;">Logout</a>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+                {% if logged_user == this_book.created_by %}
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/book/{{this_book.id}}/edit" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h2><label for="title">Title:</label></h2>
+                        <input type="text" name="title" class="form-control" value="{{this_book.title}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="created_by">Added by:</label>
+                        <input type="text" name="created_by" readonly class="form-control-plaintext"  value="{{this_book.created_by.first_name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="created_at">Added on:</label>
+                        <input type="text" name="created_at" readonly class="form-control-plaintext"  value="{{this_book.created_at}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea name="description" rows="4" class="form-control" value="{{this_book.description}}">{{this_book.description}}</textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="edit" value="edit">
+                        <a href="/book/{{this_book.id}}/edit"><button class="btn btn-secondary mt-2">Update</button></a>
+                    </div>
+                </form>
+                <a href="/book/{{this_book.id}}/delete"><button class="btn btn-danger mt-2">Delete</button></a>
+                {% else %}
+                <form action="/book/{{this_book.id}}/edit" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h4><label for="title">Title:</label></h4>
+                        <input type="text" name="title" readonly class="form-control-plaintext" value="{{this_book.title}}">
+                    </div>
+                    <div class="form-group">
+                        <h4><label for="created_by">Added by:</label></h4>
+                        <input type="text" name="created_by" readonly class="form-control-plaintext"  value="{{this_book.created_by.first_name}}">
+                    </div>
+                    <div class="form-group">
+                        <h4><label for="created_at">Added on:</label></h4>
+                        <input type="text" name="created_at" readonly class="form-control-plaintext"  value="{{this_book.created_at}}">
+                    </div>
+                    <div class="form-group">
+                        <h4><label for="description">Description:</label></h4>
+                        <textarea name="description" rows="4" readonly class="form-control-plaintext" value="{{this_book.description}}">{{this_book.description}}</textarea>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+            <div class="col-md-5 offset-1">
+                <div class="row">
+                    <h2>Users Who Like This Book:</h2>
+                    <ul>
+                    {% for user in this_book.favorited_by.all %}
+                        <li>{{user.first_name}} {{user.last_name}}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="row">
+                    {% if logged_user in this_book.favorited_by.all %}
+                        <p><a href="/book/{{this_book.id}}/remove_favorite">Remove from Favorites</a></p>
+                    {% else %}
+                        <p><a href="/book/{{this_book.id}}/add_favorite">Add to Favorites</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
