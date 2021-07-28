@@ -56,7 +56,7 @@ def edit_book(request, book_id):
     book_errors = Book.objects.book_validator(request.POST)
 
     if book_errors:
-        for error in book_errors:
+        for error in book_errors.items():
             messages.error(request, error)
         return redirect(f'/book/{this_book.id}')
     this_book.title = request.POST['title']

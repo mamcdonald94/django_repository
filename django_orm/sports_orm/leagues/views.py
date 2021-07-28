@@ -41,7 +41,7 @@ def index(request):
 		# all teams, past and present that Samuel Evans has played with
 		# "teams": Team.objects.filter(Q(all_players__first_name__icontains="Samuel"), Q(all_players__last_name__icontains="Evans")),
 		# every team that Jacob Gray played for before he joined the Oregon Colts
-		# "teams": Team.objects.filter(Q(all_players__first_name__icontains="Jacob"), Q(all_players__last_name__icontains="Gray"), ~Q(team_name__iexact="Colts"), ~Q(location__iexact="Oregon")),
+		"teams": Team.objects.filter(Q(all_players__first_name__icontains="Jacob"), Q(all_players__last_name__icontains="Gray"), ~Q(team_name__iexact="Colts"), ~Q(location__iexact="Oregon")),
 		# all teams that have had 12 or more players, past and present
 		"teams": Team.objects.annotate(num_players=Count('all_players')).filter(num_players__gt=12),
 		# "players": Player.objects.all(),
