@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Event Planner</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="/event/create" method="post" class="col-md-6">
+                <h1>Add an Event</h1>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <textarea name="location" id="location" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" class="form-control"></textarea>
+                </div>
+                <button class="btn btn-secondary">Create Event</button>
+            </form>
+            <div class="events col-md-6">
+                <table style="border: 1px solid black;">
+                    <tr>
+                        <th>Title:</th>
+                        <th>Location:</th>
+                        <th>Description:</th>
+                    </tr>
+                    {% for event in events %}
+                    <tr style="margin: 15px;">
+                        <td><a href="/event/{{event.id}}">{{event.title}}</a></td>
+                        <td>{{event.location}}</td>
+                        <td>{{event.description}}</td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+
+</body>
+</html>

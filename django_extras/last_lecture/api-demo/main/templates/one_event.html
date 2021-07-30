@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAS5WLSCvRmuoFy9mIpfU_1F609nd-Ku0&callback=initMap"></script>
+    <title>One event</title>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{event.title}}</h1>
+    <h3 id="location">{{event.location}}</h3>
+    <h3>Description: {{event.description}}</h3>
+    <div id="map"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': document.getElementById('location').innerHTML }, function (results, status) {
+                if (status == 'OK') {
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 10,
+                    center: results[0].geometry.location,
+            });
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+            geocoder = new google.maps.Geocoder();
+        }
+    </script>
+</body>
+</html>
