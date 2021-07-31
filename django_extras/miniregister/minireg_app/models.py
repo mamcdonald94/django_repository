@@ -5,7 +5,7 @@ import re
 def validateLengthGreaterThanTwo(value):
     if len(value) < 3:
         raise ValidationError(
-            '{} must be longer than: 2'.format(value)
+            'first/last name must be longer than: 2'
         )
 
 def email_validator(value):    
